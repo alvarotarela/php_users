@@ -1,0 +1,29 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+ALTER TABLE `mydb`.`users` 
+DROP FOREIGN KEY `fk_users_genders`,
+DROP FOREIGN KEY `fk_users_cities1`;
+
+ALTER TABLE `mydb`.`users` 
+CHANGE COLUMN `updated` `updated` TIMESTAMP NULL DEFAULT NULL COMMENT 'Comentario.' ,
+CHANGE COLUMN `genders_idgender` `genders_idgender` INT(11) NOT NULL ,
+CHANGE COLUMN `cities_idcity` `cities_idcity` INT(11) NOT NULL ;
+
+ALTER TABLE `mydb`.`users` 
+ADD CONSTRAINT `fk_users_genders`
+  FOREIGN KEY (`genders_idgender`)
+  REFERENCES `mydb`.`genders` (`idgender`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_users_cities1`
+  FOREIGN KEY (`cities_idcity`)
+  REFERENCES `mydb`.`cities` (`idcity`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
