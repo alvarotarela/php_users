@@ -48,9 +48,9 @@
 <?php include('../application/views/layouts/partials/header.html');?>
 <?php //include('../application/views/layouts/partials/slider.html');?>
 <div class="container">
-	<?php //include('../application/views/layouts/partials/container.html');?>
+	<?php include('../application/views/layouts/partials/container.html');?>
 	<?php //include('usuarios.php');?>
-	<?php echo $content; ?>
+	<?php //echo $content; ?>
  </div>
 <!-- Footer
 ================================================== -->
